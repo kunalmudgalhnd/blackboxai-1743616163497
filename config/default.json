@@ -1,0 +1,4 @@
+{
+  "jwtSecret": "your_jwt_secret_here", 
+  "mongoURI": "mongodb+srv://admin:admin123@cluster1.sx0kvkc.mongodb.net/groozo?retryWrites=true&w=majority"
+}
