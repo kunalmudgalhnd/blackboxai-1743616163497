@@ -10,6 +10,15 @@ const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const { addToCart } = useCart();
 
+  const shopCategories = [
+    { id: 1, name: 'Fruits & Vegetables', image: 'https://images.unsplash.com/photo-1601493700631-2b16ec4b4716' },
+    { id: 2, name: 'Dairy & Eggs', image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150' },
+    { id: 3, name: 'Meat & Fish', image: 'https://images.unsplash.com/photo-1608500218807-3702595a3a20' },
+    { id: 4, name: 'Bakery', image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff' },
+    { id: 5, name: 'Beverages', image: 'https://images.unsplash.com/photo-1554866585-cd94860890b7' },
+    { id: 6, name: 'Snacks', image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150' },
+  ];
+
   useEffect(() => {
     // Mock data - in a real app, this would come from an API
     const mockProducts = [
@@ -88,11 +97,81 @@ const Home = () => {
   return (
     <div className="py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <div className="bg-gradient-to-r from-primary to-accent rounded-xl p-8 mb-8 text-white">
-          <h1 className="text-4xl font-bold mb-4">Groceries Delivered in 30 Minutes</h1>
-          <p className="text-xl mb-6">Fresh products straight to your doorstep</p>
-          <button className="btn-secondary">Shop Now</button>
+        {/* Vibrant Hero Banner */}
+        <div className="relative rounded-2xl overflow-hidden mb-8 h-64 md:h-[500px] shadow-2xl">
+          <div className="absolute inset-0 bg-gradient-to-br from-green-500 via-green-600 to-green-700 opacity-80"></div>
+          <img 
+            src="https://images.unsplash.com/photo-1606787366850-de6330128bfc" 
+            alt="Groceries"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 flex items-center px-8 md:px-16">
+            <div className="max-w-2xl text-center mx-auto">
+              <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-yellow-100">
+                  Fresh Groceries
+                </span><br/>
+                Delivered in 30 Minutes
+              </h1>
+              <p className="text-xl text-white/90 mb-8">
+                Farm-fresh produce • Premium quality • Lightning fast delivery
+              </p>
+              <div className="flex gap-4 justify-center">
+                <Link 
+                  to="/products" 
+                  className="bg-yellow-400 hover:bg-yellow-300 text-green-800 px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-lg"
+                >
+                  Shop Now
+                </Link>
+                <Link 
+                  to="/offers" 
+                  className="bg-white/90 hover:bg-white text-green-700 px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-lg"
+                >
+                  Today's Offers
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Colorful Categories Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-center">
+            <span className="bg-gradient-to-r from-green-600 to-yellow-400 bg-clip-text text-transparent">
+              Shop by Category
+            </span>
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+            {shopCategories.map((category, index) => {
+              const colors = [
+                'from-green-400 to-green-600',
+                'from-blue-400 to-blue-600', 
+                'from-yellow-400 to-yellow-600',
+                'from-red-400 to-red-600',
+                'from-purple-400 to-purple-600',
+                'from-pink-400 to-pink-600'
+              ];
+              return (
+                <Link 
+                  to={`/category/${category.id}`}
+                  key={category.id}
+                  className="group relative rounded-2xl overflow-hidden h-40 hover:-translate-y-2 transition-all duration-300 shadow-lg"
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${colors[index]} opacity-90`}></div>
+                  <img 
+                    src={category.image}
+                    alt={category.name}
+                    className="w-full h-full object-cover mix-blend-multiply"
+                  />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+                    <h3 className="text-white font-bold text-lg md:text-xl drop-shadow-md">
+                      {category.name}
+                    </h3>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
         </div>
 
         {/* Category Filter */}
