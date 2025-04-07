@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
+import ProfessionalHome from './pages/ProfessionalHome';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import OrderConfirmation from './pages/OrderConfirmation';
@@ -17,7 +17,7 @@ function App() {
         <Header />
         <main className="min-h-screen">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<ProfessionalHome />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/order-confirmation" element={<OrderConfirmation />} />
